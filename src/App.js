@@ -3,7 +3,6 @@ import Header from './Header';
 import TabBar from './TabBar';
 import AddVocabInput from './AddVocabInput';
 import VocabList from './VocabList';
-import find from 'lodash/find';
 
 class App extends Component {
   state = {
