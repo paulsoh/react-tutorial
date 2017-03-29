@@ -8,6 +8,8 @@ class VocabList extends React.Component {
         <VocabItem
           word={vocab.word}
           isLearned={vocab.isLearned}
+          markVocabAsNeedToLearnHandler={() => this.props.markVocabAsNeedToLearnHandler(vocab.word)}
+          markVocabAsLearnedHandler={() => this.props.markVocabAsLearnedHandler(vocab.word)}
         />
       )
     })

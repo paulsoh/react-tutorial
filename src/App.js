@@ -3,6 +3,7 @@ import Header from './Header';
 import TabBar from './TabBar';
 import AddVocabInput from './AddVocabInput';
 import VocabList from './VocabList';
+import find from 'lodash/find';
 
 class App extends Component {
   state = {
@@ -57,6 +58,48 @@ class App extends Component {
     })
   }
 
+  markVocabAsLearned = (word) => {
+    const oldVocabList = [
+      ...this.state.vocabList,
+    ];
+
+    const newVocabList = oldVocabList.map((vocab) => {
+      if (vocab.word === word) {
+        return {
+          word: word,
+          isLearned: true,
+        }
+      } else {
+        return vocab;
+      }
+    });
+
+    this.setState({
+      vocabList: newVocabList,
+    })
+  }
+
+  markVocabAsNeedToLearn = (word) => {
+    const oldVocabList = [
+      ...this.state.vocabList,
+    ];
+
+    const newVocabList = oldVocabList.map((vocab) => {
+      if (vocab.word === word) {
+        return {
+          word: word,
+          isLearned: false,
+        }
+      } else {
+        return vocab;
+      }
+    });
+
+    this.setState({
+      vocabList: newVocabList,
+    })
+  }
+
   render() {
     console.log("Rendered!!")
     return (
@@ -71,6 +114,8 @@ class App extends Component {
         <br />
         <VocabList
           vocabList={this.state.vocabList}
+          markVocabAsLearnedHandler={this.markVocabAsLearned}
+          markVocabAsNeedToLearnHandler={this.markVocabAsNeedToLearn}
         />
       </div>
     );
