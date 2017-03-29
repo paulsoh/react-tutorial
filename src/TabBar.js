@@ -2,6 +2,12 @@ import React from 'react';
 
 class TabBar extends React.Component {
   render = () => {
+    const {
+      allWordsCount,
+      learnedWordsCount,
+      toLearnWordsCount,
+    } = this.props;
+
     return (
       <div className="row">
         <div className="col-lg-12">
@@ -15,19 +21,19 @@ class TabBar extends React.Component {
                 }}
               >
                 모든 단어
-                <span className="badge">12</span>
+                <span className="badge">{allWordsCount}</span>
               </a>
             </li>
             <li>
               <a>
                 학습완료한 단어
-                <span className="badge">2</span>
+                <span className="badge">{learnedWordsCount}</span>
               </a>
             </li>
             <li>
               <a>
                 학습중인 단어
-                <span className="badge">10</span>
+                <span className="badge">{toLearnWordsCount}</span>
               </a>
             </li>
           </ul>

@@ -106,7 +106,15 @@ class App extends Component {
       <div className="container">
         <Header />
         <br />
-        <TabBar />
+        <TabBar
+          allWordsCount={this.state.vocabList.length}
+          learnedWordsCount={this.state.vocabList.filter((vocab) => {
+            return vocab.isLearned
+          }).length}
+          toLearnWordsCount={this.state.vocabList.filter((vocab) => {
+            return !vocab.isLearned
+          }).length}
+        />
         <br />
         <AddVocabInput
           addVocabHandler={this.addVocabHandler}
