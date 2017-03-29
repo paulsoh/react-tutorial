@@ -3,7 +3,21 @@ import VocabItem from './VocabItem';
 
 class VocabList extends React.Component {
   render = () => {
-    const vocabList = this.props.vocabList.map((vocab) => {
+    let vocabListToRender = [];
+
+    if (this.props.activeTab === 'learned') {
+      vocabListToRender = this.props.vocabList.filter((vocab) => {
+        return vocab.isLearned;
+      })
+    } else if (this.props.activeTab === 'toLearn') {
+      vocabListToRender = this.props.vocabList.filter((vocab) => {
+        return !vocab.isLearned;
+      })
+    } else {
+      vocabListToRender = this.props.vocabList;
+    }
+
+    const vocabList = vocabListToRender.map((vocab) => {
       return (
         <VocabItem
           word={vocab.word}

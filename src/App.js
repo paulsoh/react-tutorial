@@ -134,6 +134,7 @@ class App extends Component {
           vocabList={this.state.vocabList}
           markVocabAsLearnedHandler={this.markVocabAsLearned}
           markVocabAsNeedToLearnHandler={this.markVocabAsNeedToLearn}
+          activeTab={this.state.activeTab}
         />
       </div>
     );
