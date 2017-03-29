@@ -2,9 +2,13 @@ import React from 'react';
 
 class VocabItem extends React.Component {
   render = () => {
+    const renderWord = this.props.isLearned ? this.props.word : (
+      <b>{this.props.word}</b>
+    )
+
     return (
       <a className="list-group-item">
-        {this.props.word}
+        {renderWord}
         <div className="pull-right">
           <div className="btn-group btn-group-xs" role="group" aria-label="...">
             <button type="button" className="btn btn-success">설명 보기</button>

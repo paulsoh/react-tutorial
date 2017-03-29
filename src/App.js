@@ -9,7 +9,7 @@ class App extends Component {
     vocabList: [
       {
         word: 'prevaricate',
-        isLearned: false,
+        isLearned: true,
       },
       {
         word: 'hackneyed',

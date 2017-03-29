@@ -7,6 +7,7 @@ class VocabList extends React.Component {
       return (
         <VocabItem
           word={vocab.word}
+          isLearned={vocab.isLearned}
         />
       )
     })
