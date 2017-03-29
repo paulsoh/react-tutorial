@@ -6,32 +6,34 @@ class TabBar extends React.Component {
       allWordsCount,
       learnedWordsCount,
       toLearnWordsCount,
+      changeTabHandler,
+      activeTab,
     } = this.props;
 
     return (
       <div className="row">
         <div className="col-lg-12">
           <ul className="nav nav-tabs">
-            <li className="active">
+            <li className={activeTab === 'all' ? 'active' : ''}>
               <a
-                onClick={() => {
-                  this.setState({
-                    hello: 'linewalks',
-                  })
-                }}
+                onClick={() => changeTabHandler('all')}
               >
                 모든 단어
                 <span className="badge">{allWordsCount}</span>
               </a>
             </li>
-            <li>
-              <a>
+            <li className={activeTab === 'learned' ? 'active' : ''}>
+              <a
+                onClick={() => changeTabHandler('learned')}
+              >
                 학습완료한 단어
                 <span className="badge">{learnedWordsCount}</span>
               </a>
             </li>
-            <li>
-              <a>
+            <li className={activeTab === 'toLearn' ? 'active' : ''}>
+              <a
+                onClick={() => changeTabHandler('toLearn')}
+              >
                 학습중인 단어
                 <span className="badge">{toLearnWordsCount}</span>
               </a>

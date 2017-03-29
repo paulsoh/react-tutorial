@@ -7,6 +7,7 @@ import find from 'lodash/find';
 
 class App extends Component {
   state = {
+    activeTab: 'all',
     vocabList: [
       {
         word: 'prevaricate',
@@ -36,11 +37,11 @@ class App extends Component {
   }
 
   componentWillUpdate = (nextProps, nextState) => {
-    console.log("Will Update: " + this.state.hello + "-->" + nextState.hello);
+    console.log("Will Update: " + this.state.activeTab + "-->" + nextState.activeTab);
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("Did Update: " + prevState.hello + "-->" + this.state.hello);
+    console.log("Did Update: " + prevState.activeTab + "-->" + this.state.activeTab);
   }
 
   addVocabHandler = (word) => {
@@ -100,6 +101,13 @@ class App extends Component {
     })
   }
 
+  changeTabHandler = (tab) => {
+    console.log(tab);
+    this.setState({
+      activeTab: tab,
+    });
+  }
+
   render() {
     console.log("Rendered!!")
     return (
@@ -114,6 +122,8 @@ class App extends Component {
           toLearnWordsCount={this.state.vocabList.filter((vocab) => {
             return !vocab.isLearned
           }).length}
+          changeTabHandler={this.changeTabHandler}
+          activeTab={this.state.activeTab}
         />
         <br />
         <AddVocabInput
