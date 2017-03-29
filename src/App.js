@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
 
 class App extends Component {
+  state = {
+    hello: 'world',
+  }
+
+  componentWillMount = () => {
+    console.log("Will Mount!!");
+  }
+
+  componentDidMount = () => {
+    console.log("Did Mounted!!");
+  }
+
+  componentWillUpdate = (nextProps, nextState) => {
+    console.log("Will Update: " + this.state.hello + "-->" + nextState.hello);
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log("Did Update: " + prevState.hello + "-->" + this.state.hello);
+  }
+
   render() {
+    console.log("Rendered!!")
     return (
       <div className="container">
         <div className="row">
@@ -14,7 +35,13 @@ class App extends Component {
           <div className="col-lg-12">
             <ul className="nav nav-tabs">
               <li className="active">
-                <a href="#">
+                <a
+                  onClick={() => {
+                    this.setState({
+                      hello: 'linewalks',
+                    })
+                  }}
+                >
                   모든 단어
                   <span className="badge">12</span>
                 </a>
