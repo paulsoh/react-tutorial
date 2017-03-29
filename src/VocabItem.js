@@ -4,7 +4,7 @@ class VocabItem extends React.Component {
   render = () => {
     return (
       <a className="list-group-item">
-        prevaricate
+        {this.props.word}
         <div className="pull-right">
           <div className="btn-group btn-group-xs" role="group" aria-label="...">
             <button type="button" className="btn btn-success">설명 보기</button>

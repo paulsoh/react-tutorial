@@ -6,7 +6,24 @@ import VocabList from './VocabList';
 
 class App extends Component {
   state = {
-    hello: 'world',
+    vocabList: [
+      {
+        word: 'prevaricate',
+        isLearned: false,
+      },
+      {
+        word: 'hackneyed',
+        isLearned: false,
+      },
+      {
+        word: 'diffident',
+        isLearned: false,
+      },
+      {
+        word: 'plucky',
+        isLearned: false,
+      },
+    ],
   }
 
   componentWillMount = () => {
@@ -35,7 +52,9 @@ class App extends Component {
         <br />
         <AddVocabInput />
         <br />
-        <VocabList />
+        <VocabList
+          vocabList={this.state.vocabList}
+        />
       </div>
     );
   }
