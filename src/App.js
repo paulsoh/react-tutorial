@@ -42,6 +42,21 @@ class App extends Component {
     console.log("Did Update: " + prevState.hello + "-->" + this.state.hello);
   }
 
+  addVocabHandler = (word) => {
+    const newVocabList = [
+      ...this.state.vocabList,
+    ];
+
+    newVocabList.push({
+      word: word,
+      isLearned: false,
+    });
+
+    this.setState({
+      vocabList: newVocabList,
+    })
+  }
+
   render() {
     console.log("Rendered!!")
     return (
@@ -50,7 +65,9 @@ class App extends Component {
         <br />
         <TabBar />
         <br />
-        <AddVocabInput />
+        <AddVocabInput
+          addVocabHandler={this.addVocabHandler}
+        />
         <br />
         <VocabList
           vocabList={this.state.vocabList}
