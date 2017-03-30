@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class VocabItem extends React.Component {
   render = () => {
@@ -7,11 +8,17 @@ class VocabItem extends React.Component {
     )
 
     return (
-      <a className="list-group-item">
+      <div className="list-group-item">
         {renderWord}
         <div className="pull-right">
           <div className="btn-group btn-group-xs" role="group" aria-label="...">
-            <button type="button" className="btn btn-success">설명 보기</button>
+            <Link
+              type="button"
+              className="btn btn-success"
+              to={`/word/${this.props.word}`}
+            >
+              설명 보기
+            </Link>
             <button
               type="button"
               className="btn btn-primary"
@@ -28,7 +35,7 @@ class VocabItem extends React.Component {
             </button>
           </div>
         </div>
-      </a>
+      </div>
     );
   }
 }
