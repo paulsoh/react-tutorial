@@ -4,7 +4,11 @@ import TabBar from './TabBar';
 import AddVocabInput from './AddVocabInput';
 import VocabList from './VocabList';
 import { connect } from 'react-redux';
-import { addWordToStore } from './actions';
+import {
+  addWordToStore,
+  markWordAsLearned,
+  markWordAsNeedToLearn,
+} from './actions';
 
 class App extends Component {
   state = {
@@ -32,45 +36,11 @@ class App extends Component {
   }
 
   markVocabAsLearned = (word) => {
-    const oldVocabList = [
-      ...this.state.vocabList,
-    ];
-
-    const newVocabList = oldVocabList.map((vocab) => {
-      if (vocab.word === word) {
-        return {
-          word: word,
-          isLearned: true,
-        }
-      } else {
-        return vocab;
-      }
-    });
-
-    this.setState({
-      vocabList: newVocabList,
-    })
+    this.props.markWordAsLearned(word)
   }
 
   markVocabAsNeedToLearn = (word) => {
-    const oldVocabList = [
-      ...this.state.vocabList,
-    ];
-
-    const newVocabList = oldVocabList.map((vocab) => {
-      if (vocab.word === word) {
-        return {
-          word: word,
-          isLearned: false,
-        }
-      } else {
-        return vocab;
-      }
-    });
-
-    this.setState({
-      vocabList: newVocabList,
-    })
+    this.props.markWordAsNeedToLearn(word)
   }
 
   changeTabHandler = (tab) => {
@@ -121,5 +91,7 @@ export default connect(
     }
   }, {
     addWordToVocabList: addWordToStore,
+    markWordAsLearned: markWordAsLearned,
+    markWordAsNeedToLearn: markWordAsNeedToLearn,
   }
 )(App);

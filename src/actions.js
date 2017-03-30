@@ -8,3 +8,23 @@ export const addWordToStore = (word) => {
   };
   return action;
 }
+
+export const markWordAsLearned = (word) => {
+  const action = {
+    type: 'MARK_WORD_AS_LEARNED',
+    data: {
+      word: word,
+    },
+  };
+  return action;
+}
+
+export const markWordAsNeedToLearn = (word) => {
+  const action = {
+    type: 'MARK_WORD_AS_NEED_TO_LEARN',
+    data: {
+      word: word,
+    },
+  };
+  return action;
+}
