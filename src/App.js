@@ -3,28 +3,11 @@ import Header from './Header';
 import TabBar from './TabBar';
 import AddVocabInput from './AddVocabInput';
 import VocabList from './VocabList';
+import { connect } from 'react-redux';
 
 class App extends Component {
   state = {
     activeTab: 'all',
-    vocabList: [
-      {
-        word: 'prevaricate',
-        isLearned: true,
-      },
-      {
-        word: 'hackneyed',
-        isLearned: false,
-      },
-      {
-        word: 'diffident',
-        isLearned: false,
-      },
-      {
-        word: 'plucky',
-        isLearned: false,
-      },
-    ],
   }
 
   componentWillMount = () => {
@@ -109,16 +92,17 @@ class App extends Component {
 
   render() {
     console.log("Rendered!!")
+    const vocabList = this.props.vocabList;
     return (
       <div className="container">
         <Header />
         <br />
         <TabBar
-          allWordsCount={this.state.vocabList.length}
-          learnedWordsCount={this.state.vocabList.filter((vocab) => {
+          allWordsCount={vocabList.length}
+          learnedWordsCount={vocabList.filter((vocab) => {
             return vocab.isLearned
           }).length}
-          toLearnWordsCount={this.state.vocabList.filter((vocab) => {
+          toLearnWordsCount={vocabList.filter((vocab) => {
             return !vocab.isLearned
           }).length}
           changeTabHandler={this.changeTabHandler}
@@ -130,7 +114,7 @@ class App extends Component {
         />
         <br />
         <VocabList
-          vocabList={this.state.vocabList}
+          vocabList={vocabList}
           markVocabAsLearnedHandler={this.markVocabAsLearned}
           markVocabAsNeedToLearnHandler={this.markVocabAsNeedToLearn}
           activeTab={this.state.activeTab}
@@ -140,4 +124,10 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  (state) => {
+    return {
+      vocabList: state.vocabList,
+    }
+  }, null
+)(App);
