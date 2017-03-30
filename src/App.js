@@ -4,6 +4,7 @@ import TabBar from './TabBar';
 import AddVocabInput from './AddVocabInput';
 import VocabList from './VocabList';
 import { connect } from 'react-redux';
+import { addWordToStore } from './actions';
 
 class App extends Component {
   state = {
@@ -27,18 +28,7 @@ class App extends Component {
   }
 
   addVocabHandler = (word) => {
-    const newVocabList = [
-      ...this.state.vocabList,
-    ];
-
-    newVocabList.push({
-      word: word,
-      isLearned: false,
-    });
-
-    this.setState({
-      vocabList: newVocabList,
-    })
+    this.props.addWordToVocabList(word)
   }
 
   markVocabAsLearned = (word) => {
@@ -129,5 +119,7 @@ export default connect(
     return {
       vocabList: state.vocabList,
     }
-  }, null
+  }, {
+    addWordToVocabList: addWordToStore,
+  }
 )(App);
