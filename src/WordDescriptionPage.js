@@ -27,6 +27,7 @@ class WordDescriptionPage extends React.Component {
   }
 
   render = () => {
+    console.log(this.state.definition);
     return (
       <div className="container">
         <br />
@@ -54,9 +55,9 @@ class WordDescriptionPage extends React.Component {
                     </h5>
                     <p>
                       <span className="label label-success">
-                        단어 정의
+                        예문
                       </span>
-                      &nbsp;{this.state.definition.senses[0].examples[0].text}
+                      &nbsp;{this.state.definition.senses[0].examples && this.state.definition.senses[0].examples[0].text}
                     </p>
                   </div>
                 )}
